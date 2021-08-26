@@ -1,12 +1,19 @@
-
-<mat-form-field appearance="fill">
-  <mat-label>Input</mat-label>
-  <input matInput>
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Select</mat-label>
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>Textarea</mat-label>
-  <textarea matInput></textarea>
-</mat-form-field>
+<mat-card>
+  <form (submit)="onLoginForm()" #loginForm="ngForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input name="email" ngModel type="email" matInput #emailInput="ngModel" required email>
+      <mat-error *ngIf="emailInput.invalid"></mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input name="password" ngModel type="password" matInput #passwordInput="ngModel" required>
+      <mat-error *ngIf="passwordInput.invalid"></mat-error>
+    </mat-form-field>
+    <br>
+    <button
+      mat-raised-button
+    >Login</button>
+  </form>
+</mat-card>

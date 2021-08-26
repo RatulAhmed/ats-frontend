@@ -1,5 +1,8 @@
 <mat-card>
-  <form (submit)="onSignupForm()" #signupForm="ngForm">
+  <h1>Sign In</h1>
+</mat-card>
+<mat-card>
+  <form (submit)="onSignupForm(signupForm)" #signupForm="ngForm">
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
       <input name="email" ngModel type="email" matInput #emailInput="ngModel" required email>
@@ -22,7 +25,9 @@
     <br>
 
     <button
+    type="submit"
       mat-raised-button
     >Sign Up</button>
   </form>
 </mat-card>
+

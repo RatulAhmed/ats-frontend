@@ -1,8 +1,5 @@
-:host {
-  display: block;
-  margin-top: 1rem;
-}
-
 mat-card {
-  width: 50%;
+  width: 100%;
+   text-align:center;
+   margin-top: 10%;
 }

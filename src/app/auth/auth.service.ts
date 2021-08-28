@@ -12,11 +12,11 @@ export class AuthService {
 
   createUser(email: string, userame: string, password: string) {
     const authData : AuthData = {
-      email: 'hello@test.com',
-      password:'test',
-      username: 'test'
+      email: email,
+      password: password,
+      username: userame
     }
-    this.http.post('http://localhost:3000/hello', authData)
+    this.http.post('http://localhost:3000/api/auth/signup', authData)
       .subscribe(response => {
         console.log(response);
       });

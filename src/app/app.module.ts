@@ -13,12 +13,15 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth-intercepter';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ import { AuthInterceptor } from './auth/auth-intercepter';
     MatCardModule,
     MatButtonModule,
     MatInputModule,
+    MatTableModule,
     HttpClientModule
   ],
   providers: [

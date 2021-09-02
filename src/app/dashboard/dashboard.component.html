@@ -1,3 +1,4 @@
+<form>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
@@ -17,9 +18,7 @@
     <ng-container matColumnDef="homeSpread">
       <th mat-header-cell *matHeaderCellDef> Home Spread </th>
       <td mat-cell *matCellDef="let element">
-        <button mat-stroked-button color="primary">
          {{element.homeSpread}}
-        </button>
         </td>
     </ng-container>
 
@@ -31,13 +30,32 @@
   <ng-container matColumnDef="awaySpread">
     <th mat-header-cell *matHeaderCellDef> Away Spread </th>
     <td mat-cell *matCellDef="let element">
-        <button mat-stroked-button color="primary">
           {{element.awaySpread}}
-        </button>
       </td>
   </ng-container>
+
+  <ng-container matColumnDef="selection">
+    <th mat-header-cell *matHeaderCellDef> Selection </th>
+    <td mat-cell *matCellDef="let selection">
+      <mat-form-field>
+        <mat-label>Selection</mat-label>
+        <mat-select>
+          <mat-option>
+            {{selection.awayTeam}}
+          </mat-option>
+          <mat-option>
+            {{selection.homeTeam}}
+          </mat-option>
+          <mat-option>No Selection</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </td>
+  </ng-container>
+
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
+
+</form>

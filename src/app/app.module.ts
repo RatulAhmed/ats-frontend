@@ -15,6 +15,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth-intercepter';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatTableModule } from '@angular/material/table';
     MatButtonModule,
     MatInputModule,
     MatTableModule,
+    MatSelectModule,
     HttpClientModule
   ],
   providers: [

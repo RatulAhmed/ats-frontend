@@ -1,0 +1,14 @@
+  <mat-toolbar color="primary" *ngIf="userIsAuthenticated">
+    <span>Against The Spread v0.1</span>
+
+      <a mat-button>Leaderboard</a>
+
+      <a mat-button>My Past Picks</a>
+
+      <a mat-button routerLink="/dashboard">Current Week</a>
+
+      <span class="spacer"></span>
+
+      <button mat-button (click)="onLogout()">Logout</button>
+
+  </mat-toolbar>

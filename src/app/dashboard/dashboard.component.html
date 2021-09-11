@@ -1,4 +1,4 @@
-<form (submit)="getOdds()">
+<form (submit)="onSubmit()">
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
@@ -18,9 +18,7 @@
     <ng-container matColumnDef="home_spread">
       <th mat-header-cell *matHeaderCellDef> Home Spread </th>
       <td mat-cell *matCellDef="let element">
-        <button mat-button>
          {{element.home_spread}}
-        </button>
         </td>
     </ng-container>
 
@@ -36,26 +34,24 @@
       </td>
   </ng-container>
 
-  <!-- <ng-container>
-    <th mat-header-cell *matHeaderCellDef> Selection </th>
-
-        <mat-label>Selection</mat-label>
-        <mat-select>
-          <mat-option>
-            Team 1
-          </mat-option>
-          <mat-option>
-            Team  2
-          </mat-option>
-          <mat-option>
-            No Selection
-          </mat-option>
-        </mat-select>
-
-  </ng-container> -->
-
+  <ng-container matColumnDef="selections">
+    <th mat-header-cell *matHeaderCellDef> Your Picks</th>
+  <td mat-cell *matCellDef="let element">
+    <mat-form-field appearance="fill">
+      <mat-label>Selections</mat-label>
+      <mat-select disabled={{element.isLocked}} [value]="element.selection" name="selection">
+      <mat-option value={{element.away_team}}>{{element.away_team}}</mat-option>
+      <mat-option value={{element.home_team}}>{{element.home_team}}</mat-option>
+      <mat-option value="No Selection">No selection</mat-option>
+    </mat-select>
+    </mat-form-field>
+  </td>
+  </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<button mat-flat-button>Submit</button>
+<p>{{selectedValue}}</p>
 </form>

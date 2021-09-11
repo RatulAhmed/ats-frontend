@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { element } from 'protractor';
 import { DashboardService } from './dashboard.service';
 
 import { Odds } from './odds.model';
@@ -18,8 +19,10 @@ const ELEMENT_DATA: Odds[] = [
 })
 export class DashboardComponent implements OnInit {
 
-  displayedColumns: string[] = ['home_team', 'home_spread', 'away_team', 'away_spread'];
+  selectedValue : string = 'No Selection';
+  displayedColumns: string[] = ['home_team', 'home_spread', 'away_team', 'away_spread', 'selections'];
   dataSource = ELEMENT_DATA;
+  selections : string[] = [];
 
   constructor(public dashboardService : DashboardService) { }
 
@@ -27,13 +30,19 @@ export class DashboardComponent implements OnInit {
     this.getOdds();
   }
 
-
   getOdds() {
     this.dashboardService.fetchOdds()
       .subscribe(res => {
         console.log(res);
         this.dataSource = res;
       })
+    }
 
+    onSubmit() {
+    }
+
+    onSelect(elementId: number, selectValue: string) {
+
+      console.log(elementId);
     }
   }

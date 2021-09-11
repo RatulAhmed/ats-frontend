@@ -6,6 +6,6 @@ export interface Odds {
   home_team: string,
   home_spread: string,
   winner: null,
-  isLocked: boolean
+  isLocked: boolean,
   selection: string
 }

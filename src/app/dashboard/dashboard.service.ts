@@ -16,4 +16,8 @@ export class DashboardService {
   fetchOdds() : Observable<Odds[]> {
     return this.http.get<Odds[]>('http://localhost:3000/api/odd');
   }
+
+  fetchSelections() : Observable<any> {
+    return this.http.get('http://localhost:3000/api/odd/test')
+  }
 }

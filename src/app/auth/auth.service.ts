@@ -99,7 +99,7 @@ export class AuthService {
     this.router.navigate(['/login']);
 
   }
-  private saveAuthData(token:string, expirationDate: Date, userId: string, username:string) {
+  private saveAuthData(token:string, expirationDate: Date, username: string, userId:string) {
     localStorage.setItem('token', token);
     localStorage.setItem('expiration', expirationDate.toISOString());
     localStorage.setItem('username', username);

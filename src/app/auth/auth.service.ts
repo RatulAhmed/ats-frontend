@@ -40,7 +40,6 @@ export class AuthService {
     }
     this.http.post('http://localhost:3000/api/auth/signup', authData)
       .subscribe(response => {
-        console.log(response);
       });
   }
 

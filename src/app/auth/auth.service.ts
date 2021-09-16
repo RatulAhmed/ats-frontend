@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { AuthData } from './auth-data.model';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +40,7 @@ export class AuthService {
       password: password,
       username: userame
     }
-    this.http.post('https://ats-backend-gtv4m.ondigitalocean.app/api/auth/signup', authData)
+    this.http.post( environment.api + '/api/auth/signup', authData)
       .subscribe(response => {
       });
   }
@@ -48,7 +50,7 @@ export class AuthService {
         email: email,
         password: password
       }
-      this.http.post<{token: string, userId: string, expiresIn:number, username: string }>('https://ats-backend-gtv4m.ondigitalocean.app/api/auth/login', loginData)
+      this.http.post<{token: string, userId: string, expiresIn:number, username: string }>(environment.api +'/api/auth/login', loginData)
         .subscribe(response => {
            this.token = response.token;
            this.userId = response.userId;

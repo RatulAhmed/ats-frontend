@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { DashboardService } from './dashboard.service';
 
@@ -17,10 +18,12 @@ export class DashboardComponent implements OnInit {
   displayedColumns: string[] = ['home_team', 'home_spread', 'away_team', 'away_spread', 'selections'];
   dataSource = ELEMENT_DATA;
   selections : UserSelection[] = [];
+  isLoading: boolean = true;
 
-  constructor(public dashboardService : DashboardService, public router : Router) { }
+  constructor(public dashboardService : DashboardService, public router : Router, private snackbar:MatSnackBar) { }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.getOdds();
     this.getSelections();
   }
@@ -42,13 +45,18 @@ export class DashboardComponent implements OnInit {
               }
             }
           }
+          this.isLoading = false;
         })
     }
 
     onSubmit() {
       this.dashboardService.submitChoices(this.selections)
         .subscribe(res => {
-          console.log(res);
+          console.log(res.message);
+          this.snackbar.open(res.message, 'Dismiss', {
+            duration:3000,
+            verticalPosition: 'top'
+          });
         })
       this.selections = [];
     }

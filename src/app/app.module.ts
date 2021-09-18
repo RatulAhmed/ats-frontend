@@ -17,7 +17,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { HeaderComponent } from './header/header.component';
-import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinner, MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { MatToolbarModule } from '@angular/material/toolbar'
     MatTableModule,
     MatSelectModule,
     MatToolbarModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
     HttpClientModule
   ],
   providers: [

@@ -16,7 +16,6 @@ export class DashboardService {
 
 
   submitChoices(selections: UserSelection[]) : Observable<any> {
-    console.log(selections);
     return this.http.post(environment.api +'/api/userChoice', selections);
   }
 

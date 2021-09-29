@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LeaderboardService } from './leaderboard.service';
+import { Scores }  from './scores.model'
 
 @Component({
   selector: 'app-leaderboard',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeaderboardComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: string[] = ['username', 'score'];
+  data : Scores[] = [];
+  isLoading: boolean = true;
+
+
+  constructor(public leaderboardService : LeaderboardService) { }
 
   ngOnInit(): void {
+    this.leaderboardService.getScores()
+      .subscribe(res => {
+          this.data = res;
+          console.log(this.data)
+      })
+
   }
 
 }

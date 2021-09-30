@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
 import { DashboardService } from './dashboard.service';
 
 import { Odds } from './odds.model';
 import { UserSelection } from './user-selection.model';
 
 const ELEMENT_DATA: Odds[] = [];
+const maxPicks = 5;
 
 @Component({
   selector: 'app-dashboard',
@@ -19,6 +21,8 @@ export class DashboardComponent implements OnInit {
   dataSource = ELEMENT_DATA;
   selections : UserSelection[] = [];
   isLoading: boolean = true;
+  currentNumPicks : number = 0;
+
 
   constructor(public dashboardService : DashboardService, public router : Router, private snackbar:MatSnackBar) { }
 
@@ -35,9 +39,13 @@ export class DashboardComponent implements OnInit {
       })
     }
 
-    getSelections() {
+     getSelections() {
       this.dashboardService.fetchSelections()
         .subscribe(res => {
+          this.currentNumPicks = res.length;
+          this.selections = res;
+          console.log(this.selections)
+          console.log('current num of picks returned from server = ' ,this.currentNumPicks)
           for(let i = 0; i < this.dataSource.length; i++) {
             for(let j = 0; j < res.length; j++){
               if(this.dataSource[i].id === res[j].odd_id) {
@@ -50,6 +58,10 @@ export class DashboardComponent implements OnInit {
     }
 
     onSubmit() {
+      if(this.currentNumPicks > 5) {
+        alert('You have Selected ' + this.currentNumPicks + ' selections. Please select 5');
+        return;
+      }
       this.dashboardService.submitChoices(this.selections)
         .subscribe(res => {
           console.log(res.message);
@@ -58,22 +70,43 @@ export class DashboardComponent implements OnInit {
             verticalPosition: 'top'
           });
         })
-      this.selections = [];
     }
 
-    onSelect(value: string, oddId: number) {
+    onSelect(selection: string, oddId: number) {
       // create a request json of objects that have
       // userId: oddid, selection
+      let prevSelected = false;
       let newSelection = <UserSelection>{};
       newSelection.user_id = localStorage.getItem('userId');
       newSelection.odd_id = oddId;
-      newSelection.selection = value;
+      newSelection.selection = selection;
 
-      if(value === 'No Selection') {
-        newSelection.selection = null;
+      this.selections.some(i => {
+        if(i.odd_id === newSelection.odd_id) { // this means it exists already so update
+            i.selection = newSelection.selection;
+            if(i.selection === 'No Selection') { this.decrementNumPicks() }
+            prevSelected = true;
+            return;
+        }
+      })
+
+      if(prevSelected) { return; }
+
+      if(selection === 'No Selection') {
+        newSelection.selection = 'No Selection';
+        this.decrementNumPicks();
       }
-      // TODO this will push literally all selections - maybe update
-      //  the ones that currently exists - still works e2e however
-      this.selections.push(newSelection);
+      else {
+        this.selections.push(newSelection);
+        this.currentNumPicks += 1;
+      }
     }
+
+    private decrementNumPicks() {
+      this.currentNumPicks -= 1;
+      if(this.currentNumPicks < 0) {
+        this.currentNumPicks = 0;
+      }
+    }
+
   }

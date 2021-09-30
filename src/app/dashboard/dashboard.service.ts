@@ -24,7 +24,7 @@ export class DashboardService {
   }
 
   fetchSelections() : Observable<any> {
-    return this.http.get(environment.api +'/api/odd/' +
+    return this.http.get(environment.api +'/api/userChoice/' +
     localStorage.getItem('userId'));
   }
 }

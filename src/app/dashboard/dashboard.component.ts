@@ -79,6 +79,13 @@ export class DashboardComponent implements OnInit {
 
       this.selections.some(i => {
         if(i.odd_id === newSelection.odd_id) { // this means it exists already so update
+
+            //if the current selection is no selection and we switch to something else we increment
+            if(i.selection === 'No Selection' && newSelection.selection != 'No Selection')
+            {
+              this.currentNumPicks += 1
+            }
+
             i.selection = newSelection.selection;
             if(i.selection === 'No Selection') { this.decrementNumPicks() }
             prevSelected = true;

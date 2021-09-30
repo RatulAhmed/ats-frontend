@@ -95,9 +95,9 @@ export class DashboardComponent implements OnInit {
 
       if(prevSelected) { return; }
 
+      // We should decrement unless this doesn't exist yet
       if(selection === 'No Selection') {
         newSelection.selection = 'No Selection';
-        this.decrementNumPicks();
       }
       else {
         this.selections.push(newSelection);

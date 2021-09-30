@@ -20,7 +20,8 @@ import { HeaderComponent } from './header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinner, MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { LeaderboardComponent } from './leaderboard/leaderboard.component'
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { PastPicksComponent } from './past-picks/past-picks.component'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component'
     SignupComponent,
     DashboardComponent,
     HeaderComponent,
-    LeaderboardComponent
+    LeaderboardComponent,
+    PastPicksComponent
   ],
   imports: [
     BrowserModule,

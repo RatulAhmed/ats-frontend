@@ -20,9 +20,6 @@ export class LeaderboardComponent implements OnInit {
     this.leaderboardService.getScores()
       .subscribe(res => {
           this.data = res;
-          console.log(this.data)
       })
-
   }
-
 }

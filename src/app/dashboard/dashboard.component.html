@@ -1,5 +1,5 @@
 <form (submit)="onSubmit()" *ngIf="!isLoading">
-  <h4>Currently Selected : {{currentNumPicks}}</h4>
+  <h4 style="padding-left: 10px; padding-top: 10px;">Currently Selected : {{currentNumPicks}}</h4>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
   <ng-container matColumnDef="home_team">
     <th mat-header-cell *matHeaderCellDef> Home Team </th>

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { of } from 'rxjs';
 import { DashboardService } from './dashboard.service';
-
 import { Odds } from './odds.model';
 import { UserSelection } from './user-selection.model';
 
@@ -29,13 +27,13 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
     this.getOdds();
-    this.getSelections();
   }
 
   getOdds() {
     this.dashboardService.fetchOdds()
       .subscribe(res => {
         this.dataSource = res;
+        this.getSelections();
       })
     }
 
@@ -44,8 +42,6 @@ export class DashboardComponent implements OnInit {
         .subscribe(res => {
           this.currentNumPicks = res.length;
           this.selections = res;
-          console.log(this.selections)
-          console.log('current num of picks returned from server = ' ,this.currentNumPicks)
           for(let i = 0; i < this.dataSource.length; i++) {
             for(let j = 0; j < res.length; j++){
               if(this.dataSource[i].id === res[j].odd_id) {

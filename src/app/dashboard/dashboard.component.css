@@ -3,3 +3,8 @@ table {
 }
 
 .gray { background-color: #f5f5f5 }
+
+.mat-flat-button.mat-primary {
+
+  background: #52566d;
+}

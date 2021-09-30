@@ -95,7 +95,7 @@ export class DashboardComponent implements OnInit {
 
       if(prevSelected) { return; }
 
-      // We should decrement unless this doesn't exist yet
+      // We should decrement unless this doesn't exist yet which is covered above
       if(selection === 'No Selection') {
         newSelection.selection = 'No Selection';
       }

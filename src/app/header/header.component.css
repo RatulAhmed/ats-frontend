@@ -1,5 +1,7 @@
 .mat-toolbar.mat-primary {
-
   background: #52566d
+}
 
+.flexExpand {
+  flex: 1 1 auto;
 }
